@@ -17,7 +17,7 @@ jobs:
       - name: Install buildah
         run: |
           sudo apt-get update
-          sudo apt-get install -y buildah
+          sudo apt-get install -y buildah qemu-user-static
 
       - name: Build the u-boot bin
         run: ${{ inputs.tgt }}/build_u-boot_${{ inputs.tgt }}.sh
