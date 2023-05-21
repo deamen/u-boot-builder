@@ -1,0 +1,31 @@
+name: u-boot base workflow
+
+on:
+  workflow_call:
+    inputs:
+      tgt:
+        required: true
+        type: string
+        
+jobs:
+  build-uboot-bin:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install buildah
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y buildah
+
+      - name: Build the u-boot bin
+        run: ${{ inputs.tgt }}/build_u-boot_${{ inputs.tgt }}.sh
+
+        
+      - name: Upload the ${{ inputs.tgt }} u-boot
+        uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 #v3.1.0
+        with:
+          name: u-boot_${{ inputs.tgt }}
+          path: out/u-boot_${{ inputs.tgt }}.bin
+          retention-days: 1

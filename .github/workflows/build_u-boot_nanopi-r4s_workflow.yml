@@ -1,0 +1,18 @@
+name: "Build u-boot: nanopi-r4s"
+on:
+  push:
+    branches: [ "main" ]
+    paths: 
+       - 'nanopi-r4s/*'
+       - '.github/workflows/build_u-boot_base_workflow.yml'
+       - '.github/workflows/build_u-boot_nanopi-r4s_workflow.yml'
+  pull_request:
+    branches: [ "main" ]
+  
+  workflow_dispatch:
+
+jobs:
+  build-u-boot-nanopi-r4s:
+    uses: ./.github/workflows/build_u-boot_base_workflow.yml
+    with:
+      tgt: nanopi-r4s
