@@ -24,12 +24,8 @@ buildah config --env BL31="/arm-trusted-firmware/build/rk3399/release/bl31/bl31.
 buildah config --workingdir "/u-boot" $container
 buildah run $container git checkout $uboot_ver
 buildah run $container make -j$(nproc --ignore 1) nanopi-r4s-rk3399_defconfig
-buildah run $container sed -i -e 's!^CONFIG_BOOTCOMMAND=.*!CONFIG_BOOTCOMMAND="console=ttyS2,115200n8;run distro_bootcmd"!' .config
 buildah run $container sed -i -e 's!^CONFIG_BAUDRATE=.*!CONFIG_BAUDRATE=115200!' .config
 buildah run $container make -j$(nproc --ignore 1)
-
-buildah config --label maintainer=""github.com/deamen"" $container
-
 
 cat << 'EOF' >> copy_u-boot.sh
 #!/bin/sh
