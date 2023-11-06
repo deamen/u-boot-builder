@@ -33,7 +33,7 @@ copy_script="copy_u-boot.sh"
 cat << 'EOF' >> $copy_script
 #!/bin/sh
 mnt=$(buildah mount $container)
-cp $mnt/u-boot/u-boot-sunxi-with-spl.bin ./out/u-boot-orangepi-zero3-with-spl.bin
+cp $mnt/u-boot/u-boot-sunxi-with-spl.bin ./out/u-boot_orangepi_zero3.bin
 buildah umount $container
 EOF
 chmod a+x $copy_script

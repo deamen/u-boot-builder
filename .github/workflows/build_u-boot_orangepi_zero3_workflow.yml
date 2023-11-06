@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-u-boot-nanopi-r4s:
+  build-u-boot-orangepi_zero3:
     uses: ./.github/workflows/build_u-boot_base_workflow.yml
     with:
       tgt: orangepi_zero3
