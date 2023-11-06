@@ -1,0 +1,18 @@
+name: "Build u-boot: orangepi_zero3"
+on:
+  push:
+    branches: [ "master" ]
+    paths: 
+       - 'orangepi_zero3/*'
+       - '.github/workflows/build_u-boot_base_workflow.yml'
+       - '.github/workflows/build_u-boot_orangepi_zero3_workflow.yml'
+  pull_request:
+    branches: [ "master" ]
+  
+  workflow_dispatch:
+
+jobs:
+  build-u-boot-nanopi-r4s:
+    uses: ./.github/workflows/build_u-boot_base_workflow.yml
+    with:
+      tgt: orangepi_zero3
