@@ -1,0 +1,43 @@
+name: Release Orange Pi Zero3 DTB
+
+on:
+  push:
+    tags:
+      - 'orangepi_zero3*'
+
+jobs:
+  build-u-boot-orangepi_zero3:
+    uses: ./.github/workflows/build_u-boot_base_workflow.yml
+    with:
+      tgt: orangepi_zero3
+
+  release-u-boot-orangepi_zero3:
+    runs-on: ubuntu-latest
+    needs: [build-u-boot-orangepi_zero3]
+    steps:
+      # Checkout the repository, this is needed for 'gh' to work
+      - uses: actions/checkout@v3
+
+      - name: Download u-boot_orangepi_zero3 release file
+        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a #v3.0.2
+        with:
+          name: u-boot_orangepi_zero3
+
+      - name: Create Orange Pi Zero3 Release
+        id: create_release
+        run: |
+          tag_name=$(echo "${GITHUB_REF#refs/tags/}")
+          body="Release notes for $tag_name"
+          
+          echo "Creating release $tag_name"
+          gh release create "$tag_name" "${GITHUB_WORKSPACE}/u-boot_orangepi_zero3.bin" --notes "$body"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+      - name: Verify Release
+        run: |
+          release_id=$(gh release view "$tag_name" --json id -q ".id")
+          echo "Release ID: $release_id"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
