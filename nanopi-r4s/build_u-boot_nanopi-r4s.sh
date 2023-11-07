@@ -1,7 +1,7 @@
 
 # Set atf_ver and uboot_ver environment variables
 export atf_ver="lts-v2.8.10"
-export uboot_ver="v2023.10"
+export uboot_ver="v2023.07.02"
 
 export container=$(buildah from arm64v8/alpine:3.18)
 buildah config --label maintainer=""github.com/deamen"" $container
