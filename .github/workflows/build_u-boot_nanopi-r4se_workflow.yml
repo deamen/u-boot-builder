@@ -3,7 +3,7 @@ on:
   push:
     branches: [ "master" ]
     paths: 
-       - 'nanopi-r4s/*'
+       - 'nanopi-r4se/*'
        - '.github/workflows/build_u-boot_base_workflow.yml'
        - '.github/workflows/build_u-boot_nanopi-r4se_workflow.yml'
   pull_request:
