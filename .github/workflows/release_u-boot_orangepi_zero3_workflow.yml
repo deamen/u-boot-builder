@@ -1,4 +1,4 @@
-name: Release Orange Pi Zero3 DTB
+name: Release Orange Pi Zero3 U-Boot
 
 on:
   push:
