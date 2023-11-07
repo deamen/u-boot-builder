@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-u-boot-nanopi-r4s:
+  build-u-boot-nanopi-r4se:
     uses: ./.github/workflows/build_u-boot_base_workflow.yml
     with:
       tgt: nanopi-r4se
