@@ -24,7 +24,7 @@ jobs:
 
         
       - name: Upload the ${{ inputs.tgt }} u-boot
-        uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 #v3.1.0
+        uses: actions/upload-artifact@v4.6.1
         with:
           name: u-boot_${{ inputs.tgt }}
           path: out/u-boot_${{ inputs.tgt }}.bin
